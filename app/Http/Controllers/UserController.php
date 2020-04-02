@@ -1,24 +1,13 @@
 <?php
+
 namespace App\Http\Controllers;
 
-
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\User;
 use App\Role;
-use DB;
-use Hash;
-
+use App\User;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
         $data = User::orderBy('id','DESC')->paginate(5);
@@ -34,7 +23,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::lists('display_name','id');
+        $roles = Role::select('display_name','id')->get();
         return view('users.create',compact('roles'));
     }
 
@@ -92,8 +81,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        $roles = Role::lists('display_name','id');
-        $userRole = $user->roles->lists('id','id')->toArray();
+        $roles = Role::select('display_name','id')->get();
+        $userRole = $user->roles->pluck('id','id')->toArray();
 
 
         return view('users.edit',compact('user','roles','userRole'));
