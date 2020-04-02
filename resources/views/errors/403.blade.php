@@ -1,5 +1,5 @@
-@extends('errors::minimal')
+@extends('layouts.app')
 
-@section('title', __('Forbidden'))
-@section('code', '403')
-@section('message', __($exception->getMessage() ?: 'Forbidden'))
+@section('content')
+    <h1>You don't have permission.</h1>
+@endsection
