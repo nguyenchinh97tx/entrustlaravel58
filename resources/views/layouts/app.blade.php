@@ -31,7 +31,6 @@
                 <li><a href="{{ url('/home') }}">Home</a></li>
                 <li><a href="{{ route('users.index') }}">Users</a></li>
                 <li><a href="{{ route('roles.index') }}">Roles</a></li>
-                <li><a href="{{ route('itemCRUD2.index') }}">Items</a></li>
             </ul>
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
